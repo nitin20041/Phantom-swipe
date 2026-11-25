@@ -1,0 +1,9 @@
+{
+  "app_name": "QuickPayClone",
+  "package_id": "com.dummy.quickpayclone",
+  "installed": "2026-07-15T14:22:00Z",
+  "permissions": ["READ_SMS", "INTERNET", "ACCESS_FINE_LOCATION", "CAMERA"],
+  "sideloaded": true,
+  "signing_cert_valid": false,
+  "note": "SIMULATED fraudulent payment app used to relay cloned card data for CNP transactions"
+}

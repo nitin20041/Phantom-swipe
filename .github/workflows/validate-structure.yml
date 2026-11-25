@@ -1,0 +1,82 @@
+name: Validate Repo Structure
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check required directories exist
+        run: |
+          required_dirs=(
+            "evidence/skimmer_device"
+            "evidence/phone_device"
+            "chain_of_custody"
+            "hashes"
+            "scripts"
+            "artifacts"
+            "crypto"
+            "taxonomy"
+            "report"
+          )
+          missing=0
+          for d in "${required_dirs[@]}"; do
+            if [ ! -d "$d" ]; then
+              echo "::error::Missing required directory: $d"
+              missing=1
+            else
+              echo "OK: $d"
+            fi
+          done
+          if [ "$missing" -eq 1 ]; then
+            exit 1
+          fi
+
+      - name: Check required files exist
+        run: |
+          required_files=(
+            "README.md"
+            "chain_of_custody/chain_of_custody_form.md"
+            "hashes/hash_values.txt"
+            "taxonomy/cybercrime_taxonomy.md"
+            "crypto/cryptography_discussion.md"
+            "artifacts/evidence_log.md"
+          )
+          missing=0
+          for f in "${required_files[@]}"; do
+            if [ ! -f "$f" ]; then
+              echo "::error::Missing required file: $f"
+              missing=1
+            else
+              echo "OK: $f"
+            fi
+          done
+          if [ "$missing" -eq 1 ]; then
+            exit 1
+          fi
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install pyzipper
+
+      - name: Verify evidence hashes are reproducible
+        run: |
+          python3 scripts/generate_hashes.py
+          git diff --exit-code hashes/hash_values.txt || (echo "::error::Hash values do not match committed evidence — possible tampering or missing files" && exit 1)
+
+      - name: Run artefact search script
+        run: python3 scripts/search_artifacts.py
+
+      - name: Run password cracking simulation
+        run: python3 scripts/crack_password.py

@@ -1,0 +1,12 @@
+# Password Cracking Simulation Log — Operation Phantom Swipe
+# Target archive: crypto/protected_batch.zip
+# Method: Dictionary attack using crypto/wordlist.txt
+
+Attempt 1: '123456' -> failed
+Attempt 2: 'password' -> failed
+Attempt 3: 'qwerty' -> failed
+Attempt 4: 'admin123' -> failed
+Attempt 5: 'letmein' -> failed
+Attempt 6: 'password1' -> SUCCESS
+
+RESULT: Password recovered = 'password1' after 6 attempts in 0.0120s

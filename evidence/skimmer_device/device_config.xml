@@ -1,0 +1,8 @@
+<SkimmerDevice>
+  <SerialNumber>SK-DUMMY-77821</SerialNumber>
+  <FirmwareVersion>2.3</FirmwareVersion>
+  <FirstBootTimestamp>2026-07-28T06:03:11Z</FirstBootTimestamp>
+  <BluetoothMAC>DE:AD:BE:EF:00:11</BluetoothMAC>
+  <StorageCapacityKB>512</StorageCapacityKB>
+  <RecordsStored>5</RecordsStored>
+</SkimmerDevice>

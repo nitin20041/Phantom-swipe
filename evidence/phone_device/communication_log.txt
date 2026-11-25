@@ -1,0 +1,6 @@
+# Simulated extracted SMS thread — contact saved as "Vendor-2"
+[2026-07-30 21:03] OUT +91-DUMMY-90011: "batch 1 ready, 5 tracks, sending tonight"
+[2026-07-30 21:05] IN  +65-DUMMY-22110: "confirmed, send via usual drop"
+[2026-08-01 10:30] OUT +91-DUMMY-90011: "pushed 5 more via app, check dashboard"
+[2026-08-03 03:12] IN  +65-DUMMY-22110: "3 declined, 2 cleared. payout as usual"
+[2026-08-05 22:40] OUT +91-DUMMY-90011: "device retrieved, going quiet 2 weeks"
